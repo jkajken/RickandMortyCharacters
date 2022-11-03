@@ -12,7 +12,6 @@ import com.example.rickandmortycharacters.databinding.FragmentAllCharactersBindi
 class AllCharactersFragment : Fragment() {
     private lateinit var binding: FragmentAllCharactersBinding
     private lateinit var characterList: ArrayList<Character>
-    private var bundle = Bundle()
 
 
     override fun onCreateView(
@@ -31,9 +30,9 @@ class AllCharactersFragment : Fragment() {
     }
 
     private fun onClick(position: Int) {
-
-        bundle.putSerializable("KEY", characterList[position])
-        findNavController().navigate(R.id.characterFragment, bundle)
+        findNavController().navigate(AllCharactersFragmentDirections.actionAllCharactersFragmentToCharacterFragment(
+            characterList[position]
+        ))
     }
 
     private fun loadData() {

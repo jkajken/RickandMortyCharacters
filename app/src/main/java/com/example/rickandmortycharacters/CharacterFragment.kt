@@ -12,6 +12,7 @@ import com.example.rickandmortycharacters.databinding.FragmentCharacterBinding
 class CharacterFragment : Fragment() {
     private lateinit var binding: FragmentCharacterBinding
     private lateinit var dataFromAllCharactersFragment: Character
+    private lateinit var navArgs: CharacterFragmentArgs
 
 
     override fun onCreateView(
@@ -24,12 +25,21 @@ class CharacterFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        dataFromAllCharactersFragment = arguments?.getSerializable("KEY") as Character
 
+         arguments?.let {
+            navArgs = CharacterFragmentArgs.fromBundle(it)
+        }
+        dataFromAllCharactersFragment=navArgs.rickandmorthy
         binding.apply {
 
+            characterNameTextV.text= dataFromAllCharactersFragment.characterName
             characterImage.setImageResource(dataFromAllCharactersFragment.characterImage)
-            characterNameTextV.text=dataFromAllCharactersFragment.characterName
             }
     }
 }
+
+// arguments?.let {
+//            navArgs= SecondFragmentArgs.fromBundle(it)
+//        }
+//        binding.tvResult.text=navArgs.toString()
+//    }
